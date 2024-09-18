@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import "../App.css";
 
 const bull = (
   <Box
