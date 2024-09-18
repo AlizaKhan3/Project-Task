@@ -28,7 +28,7 @@ function CardComponent({
   countryOptions,
 }) {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275 }} className="CardComponent">
       <CardContent>
         <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
           {title}
