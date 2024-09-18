@@ -1,6 +1,6 @@
-import SignupCard from './pages/signup';
+import SignupCard from './pages/signup/signup';
 import './App.css';
-import LoginCard from './pages/login';
+import LoginCard from './pages/login/login';
 // import CardComponent from './components/card';
 
 function App() {
