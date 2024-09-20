@@ -28,6 +28,7 @@
 // export default LoginCard;
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   MDBBtn,
   MDBContainer,
@@ -64,16 +65,6 @@ function LoginCard() {
 
           <MDBCard className='my-5 bg-glass'>
             <MDBCardBody className='p-5'>
-              {/* <MDBRow>
-                <MDBCol col='6'>
-                  <MDBInput wrapperClass='mb-4' label='First name' id='form1' type='text'/>
-                </MDBCol>
-
-                <MDBCol col='6'>
-                  <MDBInput wrapperClass='mb-4' label='Last name' id='form2' type='text'/>
-                </MDBCol>
-              </MDBRow> */}
-
               <MDBInput wrapperClass='mb-4' label='Email' id='form3' type='email'/>
               <MDBInput wrapperClass='mb-4' label='Password' id='form4' type='password'/>
 
@@ -85,7 +76,7 @@ function LoginCard() {
 
               <div className="text-center">
 
-                <p>New to our App?<button style={{backgroundColor:"transparent", boxShadow:"none", color:"#3b71ca", border:"none"}}>Regsiter Now</button></p>
+                <p>New to our App? <Link to="./register" style={{backgroundColor:"transparent", boxShadow:"none", color:"#3b71ca", border:"none"}}> Regsiter Now</Link></p>
 
               </div>
 
