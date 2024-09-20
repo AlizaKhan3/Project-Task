@@ -41,13 +41,10 @@ import {
   MDBIcon
 }
   from 'mdb-react-ui-kit';
-// import "./loginValidation" ;
 import validation from './loginValidation';
 import { Typography } from 'antd';
 
 const { Text } = Typography;
-
-
 
 function LoginCard() {
   const [values, setvalues] = useState({
@@ -73,7 +70,7 @@ function LoginCard() {
 
           <MDBCol md='6' className='text-center text-md-start d-flex flex-column justify-content-center'>
 
-            <h1 className="my-5 display-3 fw-bold ls-tight px-3" style={{ color: "000" }}>
+             <h1 className="my-5 display-3 fw-bold ls-tight px-3" style={{ color: "000" }}>
               Landsat Reflectance Data:<br />
               <span style={{ color: 'hsl(218, 81%, 75%)' }}>On the Fly and at your Fingertips
               </span>
