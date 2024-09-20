@@ -41,8 +41,13 @@ import {
   MDBIcon
 }
   from 'mdb-react-ui-kit';
-import { BackTop } from 'antd';
-import Password from 'antd/es/input/Password';
+// import "./loginValidation" ;
+import validation from './loginValidation';
+import { Typography } from 'antd';
+
+const { Text } = Typography;
+
+
 
 function LoginCard() {
   const [values, setvalues] = useState({
@@ -50,12 +55,15 @@ function LoginCard() {
     password: ''
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  }
-
   const handleInputValue = (e) => {
     setvalues(prev=> ({...prev, [e.target.name] : [e.target.value]}))
+  }
+
+  const [errors, setErrors] = useState({});
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors(validation(values));
   }
 
   return (
@@ -79,7 +87,10 @@ function LoginCard() {
 
             <MDBCard className='my-5 bg-glass'>
               <MDBCardBody className='p-5'>
+              {errors.email &&   <Text type="danger">{errors.email}</Text>}
                 <MDBInput onChange={handleInputValue} name='email' wrapperClass='mb-4' label='Email' id='form3' type='email' />
+               
+              
                 <MDBInput onChange={handleInputValue} name='password' wrapperClass='mb-4' label='Password' id='form4' type='password' />
 
                 <div className='d-flex justify-content-center mb-4'>
