@@ -1,4 +1,4 @@
-.card-container {
+/* .card-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,30 +6,30 @@
   }
   
   .card-container .card {
-    width: 50%; /* take up 50% of the container width */
+    width: 50%; 
     height: 400px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px auto; /* add margin to center the card horizontally */
-  }
+    margin: 20px auto; 
+    }
   
-  /* Add media queries for responsiveness */
+
   @media (max-width: 1200px) {
     .card-container .card {
-      width: 45%; /* reduce width for larger screens */
+      width: 45%;
     }
   }
   
   @media (max-width: 992px) {
     .card-container .card {
-      width: 40%; /* reduce width for medium screens */
+      width: 40%; 
     }
   }
   
   @media (max-width: 768px) {
     .card-container .card {
-      width: 80%; /* take up 80% of the container width on smaller screens */
+      width: 80%; 
     }
   }
   
@@ -43,4 +43,23 @@
     .card-container .card {
       height: 300px;
     }
+  } */
+
+  /* .rounded-t-5 {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  
+  @media (max-width: 550px) {
+    .rounded-tr-lg-0 {
+      border-top-right-radius: 0.5rem;
+      border-bottom-left-radius: 0rem;
+    }
+  } */
+
+  .registen-btn{
+    /* background-color: transparent; */
+    box-shadow: none !important;
+    border: none !important;
+    color: black;
   }
