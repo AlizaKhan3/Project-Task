@@ -53,6 +53,7 @@ import {
   MDBIcon
 }
 from 'mdb-react-ui-kit';
+import { Link } from 'react-router-dom';
 
 function SignupCard() {
   return (
@@ -102,10 +103,7 @@ function SignupCard() {
               <MDBBtn className='w-100 mb-4' size='md'>sign up</MDBBtn>
 
               <div className="text-center">
-                <p>Already have an Account?<button style={{backgroundColor:"transparent", boxShadow:"none", color:"#3b71ca", border:"none"}}>Login</button></p>
-
-              
-
+                <p>Already have an Account? <Link to="/" style={{backgroundColor:"transparent", boxShadow:"none", color:"#3b71ca", border:"none"}}> Login</Link></p>
               </div>
 
             </MDBCardBody>
