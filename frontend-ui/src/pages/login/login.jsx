@@ -56,11 +56,11 @@ function LoginCard() {
   })
 
   const handleInputValue = (e) => {
-    setvalues(prev=> ({...prev, [e.target.name] : [e.target.value]}))
+    setvalues(prev => ({ ...prev, [e.target.name]: [e.target.value] }))
   }
 
   const [errors, setErrors] = useState({});
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validation(values));
@@ -68,9 +68,9 @@ function LoginCard() {
 
   return (
     <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden'>
-  <form onSubmit={handleSubmit}>
-      <MDBRow>
-    
+      <form onSubmit={handleSubmit}>
+        <MDBRow>
+
           <MDBCol md='6' className='text-center text-md-start d-flex flex-column justify-content-center'>
 
             <h1 className="my-5 display-3 fw-bold ls-tight px-3" style={{ color: "000" }}>
@@ -87,12 +87,14 @@ function LoginCard() {
 
             <MDBCard className='my-5 bg-glass'>
               <MDBCardBody className='p-5'>
-              {errors.email &&   <Text type="danger">{errors.email}</Text>}
-                <MDBInput onChange={handleInputValue} name='email' wrapperClass='mb-4' label='Email' id='form3' type='email' />
-               
-              
-                <MDBInput onChange={handleInputValue} name='password' wrapperClass='mb-4' label='Password' id='form4' type='password' />
-
+                <div style={{ marginBottom: '10px' }}>
+                  <MDBInput onChange={handleInputValue} name='email' label='Email' wrapperClass='mb-1' id='form3' type='email' />
+                  {errors.email !== null && <Text type="danger">{errors.email}</Text>}
+                </div>
+                <div style={{ marginBottom: '20px' }}>
+                  <MDBInput onChange={handleInputValue} name='password' wrapperClass='mb-1' label='Password' id='form4' type='password' />
+                  {errors.password !== null && <Text type="danger">{errors.password}</Text>}
+                </div>
                 <div className='d-flex justify-content-center mb-4'>
                   <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
                 </div>
@@ -109,9 +111,9 @@ function LoginCard() {
             </MDBCard>
 
           </MDBCol>
-        
-      </MDBRow>
-</form>
+
+        </MDBRow>
+      </form>
     </MDBContainer>
   );
 }
