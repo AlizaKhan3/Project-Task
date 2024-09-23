@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Result } from 'antd';
 import { Link } from 'react-router-dom';
 
-const AppNotFound = () => (
+const NotFound = () => (
   <Result
     status="404"
     title="404"
@@ -10,4 +10,4 @@ const AppNotFound = () => (
     extra={<Button  type="primary"><Link to="/">Back to Home Page</Link></Button>}
   />
 );
-export default AppNotFound;
+export default NotFound;
