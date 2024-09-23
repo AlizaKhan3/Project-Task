@@ -4,7 +4,7 @@ function validation(values) {
     const password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,16}$/;
 
     if (!values.firstName && !values.lastName) {
-        error.firstName = "Enter your name";
+        error.firstName = "Please fill out this field";
     } else {
         error.firstName = null;
     }
@@ -20,7 +20,7 @@ function validation(values) {
     if (!values.password) {
         error.password = "Please enter your password";
     } else if (!password_pattern.test(values.password)) {
-        error.password = "Invalid Password!";
+        error.password = "Password must include lowercase letters, uppercase letters, numbers, and special characters";
     } else {
         error.password = null;
     }
