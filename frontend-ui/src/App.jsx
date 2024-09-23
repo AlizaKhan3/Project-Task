@@ -1,29 +1,40 @@
-import SignupCard from './pages/signup/signup';
-import './App.css';
-import LoginCard from './pages/login/login';
-// import CardComponent from './components/card';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import AppNotFound from './components/pageNotFound';
-
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import AppLoginCard from './pages/login/login';
+import AppSignupCard from './pages/signup/signup';
+// import NotFound from './components/pageNotFound';
+// import LoginCard from './pages/login/login';
+import AppLoginCard from './pages/login/login';
+import NotFound from './components/pageNotFound';
 function App() {
   return (
-    <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<LoginCard/>}/>
-      <Route path='/register' element={<SignupCard/>}/>
-      <Route path='/*' element={<AppNotFound/>}/>
-
-    </Routes>
-    </BrowserRouter>
-
-
-    // <div>
-    //  <LoginCard></LoginCard>
-    //  <SignupCard></SignupCard>
-
-
-    // </div>
+    <Router>
+      <div>
+        {/* <h1>Hello from App!</h1> */}
+        <Routes>
+          <Route path="/" element={<AppLoginCard />} />
+          <Route path="/register" element={<AppSignupCard />} />
+          {/* <Route path="/login" element={<AppLoginCard />} /> */}
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
+
+// function App() {
+//   return (
+//   //   <div>
+//   //   <h1>Hello dfkldfjkldjflkdj</h1>
+//   // </div>
+//   <Router>
+//     <Routes>
+//       <Route path="/register" element={<SignupCard />} />
+//       <Route path="/login" element={<LoginCard />} />
+//       <Route path="/*" element={<AppNotFound />} />
+//     </Routes>
+//   </Router>
+//   );
+// }
 
 export default App;
