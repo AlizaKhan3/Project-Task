@@ -1,9 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import AppLoginCard from './pages/login/login';
 import AppSignupCard from './pages/signup/signup';
-// import NotFound from './components/pageNotFound';
-// import LoginCard from './pages/login/login';
 import AppLoginCard from './pages/login/login';
 import NotFound from './components/pageNotFound';
 function App() {
@@ -14,7 +11,6 @@ function App() {
         <Routes>
           <Route path="/" element={<AppLoginCard />} />
           <Route path="/register" element={<AppSignupCard />} />
-          {/* <Route path="/login" element={<AppLoginCard />} /> */}
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
