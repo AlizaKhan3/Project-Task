@@ -56,6 +56,9 @@ function AppSignupCard() {
       axios.post('http://localhost:8000/register', values)
         .then((res) => {
           console.log("response-->", res);
+          if(res.data.statusbar === "Successfully inserted data"){
+            navigate('/');
+          }
         })
         .catch((err) => console.log(err));
     } else {
