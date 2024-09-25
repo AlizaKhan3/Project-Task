@@ -17,31 +17,55 @@ import axios from 'axios';
 const { Text } = Typography;
 
 function AppSignupCard() {
-  const [values, setValues] = useState({ firstName: '', lastName: '', email: '', password: '' });
+  const [values, setValues] = useState({ firstname: '', lastname: '', email: '', password: '' });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  // const handleInputValue = (e) => {
+  //   setValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  // };
 
-  const handleInputValue = (e) => {
-    setValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  // const handleInputValue = (e) => {
+  //   setValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  //   const storedUser = localStorage.getItem('user');
+  //   if (storedUser) {
+  //     const user = JSON.parse(storedUser);
+  //     setValues(user);
+  //   }
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('handleSubmit function called')
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   console.log('handleSubmit function called')
+  //   const validationErrors = validation(values);
+  //   setErrors(validationErrors);
+  //     axios.post('http://localhost:8000/register', values)
+  //       .then(res => {
+  //        console.log("response-->", res);
+  //       })
+  //       .catch(err => console.log(err));
+  // };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('handleSubmit function called');
     const validationErrors = validation(values);
-    setErrors(validationErrors);
-
-    // if (Object.keys(validationErrors).length === 0) { // No validation errors
-    if (!errors.firstName && !errors.lastName && !errors.email && !errors.password) {
-      axios.post('http://localhost:3000/register', values)
-        .then(res => {
-          // After successful signup, navigate to root
-          res.redirect("/");
+    console.log('validationErrors:', validationErrors);
+  
+    if (Object.keys(validationErrors).length === 0) {
+      // No errors, proceed with API call
+      axios.post('http://localhost:8000/register', values)
+        .then((res) => {
+          console.log("response-->", res);
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
+    } else {
+      // Errors present, update errors state
+      setErrors(validationErrors);
+      console.log("Errors present, not submitting data");
     }
   };
 
+  
   return (
     <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden'>
       <form onSubmit={handleSubmit}>
@@ -57,25 +81,31 @@ function AppSignupCard() {
               <MDBCardBody className='p-5'>
                 <MDBRow>
                   <MDBCol col='6' style={{marginBottom: 10}}>
-                    <MDBInput onChange={handleInputValue} name='firstName' wrapperClass='mb-1' label='First name' id='form1' type='text' />
-                    {errors.firstName && <Text type="danger">{errors.firstName}</Text>}
+                  <MDBInput onChange={e => setValues({...values, firstname: e.target.value})} name='firstname' wrapperClass='mb-1' label='First Name' id='form1' type='text' />
+
+                    {/* <MDBInput onChange={handleInputValue} name='firstname' wrapperClass='mb-1' label='First name' id='form1' type='text' /> */}
+                    {errors.firstname && <Text type="danger">{errors.firstname}</Text>}
                   </MDBCol>
-                  <MDBCol col='6' style={{marginBottom: 10}}>
-                    <MDBInput onChange={handleInputValue} name='lastName' wrapperClass='mb-1' label='Last name' id='form2' type='text' />
-                    {errors.firstName && <Text type="danger">{errors.firstName}</Text>}
-                  </MDBCol>
+                 <MDBCol col='6' style={{ marginBottom: 10 }}>
+  <MDBInput onChange={e => setValues({ ...values, lastname: e.target.value })} name='lastname' wrapperClass='mb-1' label='Last Name' id='form1' type='text' />
+  {errors.lastname && <Text type="danger">{errors.lastname}</Text>}
+</MDBCol>
                 </MDBRow>
                 <div style={{marginBottom: 15}}>
-                <MDBInput onChange={handleInputValue} name='email' label='Email' wrapperClass='mb-1' id='form3' type='email' />
+                <MDBInput onChange={e => setValues({...values, email: e.target.value})} name='email' wrapperClass='mb-1' label='Email' id='form1' type='email' />
+
+                {/* <MDBInput onChange={handleInputValue} name='email' label='Email' wrapperClass='mb-1' id='form3' type='email' /> */}
                 {errors.email && <Text type="danger">{errors.email}</Text>}
                 </div>
                 <div style={{marginBottom: 15}}>
-                <MDBInput onChange={handleInputValue} name='password' wrapperClass='mb-1' label='Password' id='form4' type='password' />
+                <MDBInput onChange={e => setValues({...values, password: e.target.value})} name='password' wrapperClass='mb-1' label='Password' id='form1' type='password' />
+
+                {/* <MDBInput onChange={handleInputValue} name='password' wrapperClass='mb-1' label='Password' id='form4' type='password' /> */}
                 {errors.password && <Text type="danger">{errors.password}</Text>}
                 </div>
                 <MDBCheckbox style={{background: "#ce2031", borderColor:"#ce2031"}} name='flexCheck' id='flexCheckDefault' label='Subscribe to our newsletter' />
-                {/* <MDBBtn type='submit' className='w-100 mb-4' size='md' style={{background: "#ce2031"}}>Sign Up</MDBBtn> */}
-                <MDBBtn onClick={() => console.log('Button clicked')} type='submit' className='w-100 mb-4' size='md'>Sign Up</MDBBtn>
+                <MDBBtn type='submit' className='w-100 mb-4' size='md' style={{background: "#ce2031"}}>Sign Up</MDBBtn>
+                {/* <MDBBtn onClick={() => console.log('Button clicked')} type='submit' className='w-100 mb-4' size='md'>Sign Up</MDBBtn> */}
                 <div className="text-center">
                   <p>Already have an Account? <Link to="/" style={{ backgroundColor: "transparent", boxShadow: "none", color: "#ce2031" }}> Login</Link></p>
                 </div>
@@ -181,7 +211,7 @@ export default AppSignupCard;
     // const err = validation(values);
     // setErrors(err);
   
-    // if (!err.firstName && !err.lastName && !err.email && !err.password) {
+    // if (!err.firstname && !err.lastname && !err.email && !err.password) {
     //   axios.post('http://localhost:3000/register', values)
     //   .then((res) => {
     //     console.log(' Axios request successful:', res);
@@ -206,7 +236,7 @@ export default AppSignupCard;
   //   const err = validation(values);
   //   setErrors(err);
 
-  //   if (!errors.firstName && !errors.lastName && !errors.email && !errors.password) {
+  //   if (!errors.firstname && !errors.lastname && !errors.email && !errors.password) {
   //     axios.post('http://localhost:3000/register', values)
   //       .then(res => {
   //         navigate('/');
