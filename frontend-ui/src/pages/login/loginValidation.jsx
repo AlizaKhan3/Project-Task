@@ -8,15 +8,15 @@ function validation(values) {
     } else if (!email_pattern.test(values.email)) {
         error.email = "Invalid Email!";
     } else {
-        error.email = null;
+        delete error.email;
     }
 
     if (!values.password) {
         error.password = "Please enter your password";
     } else if (!password_pattern.test(values.password)) {
-        error.password = "Invalid Password!";
+        error.password = "Password must include lowercase letters, uppercase letters, numbers, and special characters";
     } else {
-        error.password = null;
+        delete error.password;
     }
     return error;
 }
