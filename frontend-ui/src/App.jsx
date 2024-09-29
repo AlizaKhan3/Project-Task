@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AppSignupCard from './pages/signup/signup';
 import AppLoginCard from './pages/login/login';
 import NotFound from './components/pageNotFound';
+import UserLocation from './pages/location';
+
 function App() {
   return (
     <Router>
@@ -11,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AppLoginCard />} />
           <Route path="/register" element={<AppSignupCard />} />
+          <Route path='/location' element={<UserLocation />}/>
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
