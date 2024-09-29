@@ -16,11 +16,7 @@ import axios from 'axios';
 
 const { Text } = Typography;
 
-function AppSignupCard() {
-  const [values, setValues] = useState({ firstname: '', lastname: '', email: '', password: '' });
-  const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
-  // const handleInputValue = (e) => {
+ // const handleInputValue = (e) => {
   //   setValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
   // };
 
@@ -32,6 +28,12 @@ function AppSignupCard() {
   //     setValues(user);
   //   }
   // };
+
+
+function AppSignupCard() {
+  const [values, setValues] = useState({ firstname: '', lastname: '', email: '', password: '' });
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
