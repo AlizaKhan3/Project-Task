@@ -59,12 +59,11 @@ function AppSignupCard() {
       .then((res) => {
         console.log("response-->", res);
         if (res.data.statusbar === "Successfully inserted data") {
-          // navigate('');
+          navigate('register');
         }
       })
       .catch((err) => console.log(err));
     } else {
-      // Errors present, update errors state
       setErrors(validationErrors);
       console.log("Errors present, not submitting data");
     }
