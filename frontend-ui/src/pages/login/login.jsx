@@ -18,27 +18,40 @@ import axios from 'axios';
 const { Text } = Typography;
 
 function AppLoginCard() {
-  const [values, setValues] = useState({ email: '', password: '' });
+  const [values, setValues] = useState({
+    email: '',
+    password: ''
+  });
+  
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate(); 
-
+  
+  const navigate = useNavigate();
+  
   axios.defaults.withCredentials = true;
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const validationErrors = validation(values);
+  
     if (Object.keys(validationErrors).length === 0) {
-      axios.post('http://localhost:8000/', values)
-        .then((res) => {
-          console.log("response Of Login-->", res);
-          if (res.data.statusbar === "Success Login") {
-            navigate('/location');
-            console.log("Login processed successfully and navigated to location!");
-          } else {
-            console.log(res.data.Error || "Login failed");
-          }
-        })
-        .catch((err) => console.log(err));
+      // No errors, proceed with API call
+      axios.post('http://localhost:8000/', values, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((res) => {
+        console.log("response Of Login-->", res);
+        if (res.data.statusbar === "Success Login") {
+          navigate('/');
+          console.log("Login processed successfully and navigated to location!");
+        } else {
+          console.log(res.data.Error || "Login failed");
+        }
+      })
+      .catch((err) => console.log(err));
     } else {
+      // Errors present, update errors state
       setErrors(validationErrors);
     }
   };
@@ -96,7 +109,7 @@ function AppLoginCard() {
                 </div> */}
                 <MDBBtn type='submit' className='w-100 mb-4'  style={{background: "#ce2031"}} size='md'>LOGIN</MDBBtn>
                 <div className="text-center">
-                  <p>New to our App? <Link to="./register" style={{ backgroundColor: "transparent", boxShadow: "none", color: "#ce2031", border: "none" }}> Regsiter Now</Link></p>
+                  <p>New to our App? <Link to="/register" style={{ backgroundColor: "transparent", boxShadow: "none", color: "#ce2031", border: "none" }}> Regsiter Now</Link></p>
                 </div>
               </MDBCardBody>
             </MDBCard>

@@ -31,26 +31,38 @@ const { Text } = Typography;
 
 
 function AppSignupCard() {
-  const [values, setValues] = useState({ firstname: '', lastname: '', email: '', password: '' });
+  const [values, setValues] = useState({
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: ''
+  });
+  
   const [errors, setErrors] = useState({});
+  
   const navigate = useNavigate();
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('handleSubmit function called');
+  
     const validationErrors = validation(values);
     console.log('validationErrors:', validationErrors);
-
+  
     if (Object.keys(validationErrors).length === 0) {
       // No errors, proceed with API call
-      axios.post('http://localhost:8000/register', values)
-        .then((res) => {
-          console.log("response-->", res);
-          if (res.data.statusbar === "Successfully inserted data") {
-            navigate('/');
-          }
-        })
-        .catch((err) => console.log(err));
+      axios.post('http://localhost:8000/register', values, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((res) => {
+        console.log("response-->", res);
+        if (res.data.statusbar === "Successfully inserted data") {
+          // navigate('');
+        }
+      })
+      .catch((err) => console.log(err));
     } else {
       // Errors present, update errors state
       setErrors(validationErrors);
@@ -92,7 +104,7 @@ function AppSignupCard() {
                 <MDBCheckbox style={{ background: "#ce2031", borderColor: "#ce2031" }} name='flexCheck' id='flexCheckDefault' label='Subscribe to our newsletter' />
                 <MDBBtn type='submit' className='w-100 mb-4' size='md' style={{ background: "#ce2031" }}>Sign Up</MDBBtn>
                 <div className="text-center">
-                  <p>Already have an Account? <Link to="/" style={{ backgroundColor: "transparent", boxShadow: "none", color: "#ce2031" }}> Login</Link></p>
+                  <p>Already have an Account? <Link to="/login" style={{ backgroundColor: "transparent", boxShadow: "none", color: "#ce2031" }}> Login</Link></p>
                 </div>
               </MDBCardBody>
             </MDBCard>

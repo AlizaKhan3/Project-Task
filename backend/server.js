@@ -1,5 +1,10 @@
+// import express from 'express';
+// import mysql from 'mysql2';
+// import cors from 'cors';
+// import bcrypt from 'bcrypt';
+
 const express = require('express');
-const mysql = require("mysql");
+const mysql = require("mysql2")
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -9,11 +14,9 @@ const salt = 10;
 const app = express();
 const PORT = 8000;
 app.use(express.json());
+
 app.use(cors({
-  // origin: ["http://localhost:8000"],
-  origin: ["http://192.168.0.106:3000"],
-  methods: ["POST", "GET"],
-  credentials: true
+  origin:"*"
 }));
 
 app.use(cookieParser());
@@ -22,12 +25,8 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "userdata"
+  database: "userdata",
 })
-
-// app.get('/', (req, res) => {
-//   res.send('Welcome to the Signup API');
-// });
 
 app.post('/register', (req, res) => {
   const sql = "INSERT INTO signup (`firstname`, `lastname`, `email`, `password`) VALUES (?)";
@@ -50,17 +49,17 @@ app.post('/register', (req, res) => {
   });
 });
 
-app.post('/', (req, res) => {
+app.post('/login', (req, res) => {
   const sql = 'SELECT * FROM signup WHERE email = ?';  //cannot compare password as it is hashed
   db.query(sql, [req.body.email], (err, data) => {
     if (err) return res.json({ Error: "Login error!" });
     if (data.length > 0) {
-      bcrypt.compare(req.body.password.toString().trim(), data[0].password, (err, response) => {
+      bcrypt.compare(req.body.password.toString(), data[0].password, (err, response) => {
         if (err) return res.json({ Error: "Password Not Compared" });
         if (response) {
-          const name = data[0].name;
-          const token = jwt.sign({name}, "jwt-secret-key", {expiresIn: '1d'});
-          res.cookie('token', token );
+          // const name = data[0].name;
+          // const token = jwt.sign({name}, "jwt-secret-key", {expiresIn: '1d'});
+          // res.cookie('token', token );
           return res.json({ statusbar: "Success Login"});
         }
         else {
